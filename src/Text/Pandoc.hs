@@ -95,6 +95,7 @@ module Text.Pandoc
                , writeFB2
                , writeOrg
                , writeAsciiDoc
+               , writeAnsi
                -- * Rendering templates and default templates
                , module Text.Pandoc.Templates
                -- * Version
@@ -135,6 +136,7 @@ import Text.Pandoc.Writers.MediaWiki
 import Text.Pandoc.Writers.Textile
 import Text.Pandoc.Writers.Org
 import Text.Pandoc.Writers.AsciiDoc
+import Text.Pandoc.Writers.Ansi
 import Text.Pandoc.Templates
 import Text.Pandoc.Options
 import Text.Pandoc.Shared (safeRead)
@@ -228,6 +230,7 @@ writers = [
   ,("rtf"          , PureStringWriter writeRTF)
   ,("org"          , PureStringWriter writeOrg)
   ,("asciidoc"     , PureStringWriter writeAsciiDoc)
+  ,("ansi"         , PureStringWriter writeAnsi)
   ]
 
 getDefaultExtensions :: String -> Set Extension

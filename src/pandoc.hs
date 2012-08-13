@@ -763,6 +763,7 @@ defaultWriterName x =
     ".asciidoc" -> "asciidoc"
     ".pdf"      -> "latex"
     ".fb2"      -> "fb2"
+    ".ansi"     -> "ansi"
     ['.',y] | y `elem` ['1'..'9'] -> "man"
     _          -> "html"
 

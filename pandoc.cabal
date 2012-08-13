@@ -279,6 +279,7 @@ Library
                    Text.Pandoc.Writers.RST,
                    Text.Pandoc.Writers.Org,
                    Text.Pandoc.Writers.AsciiDoc,
+                   Text.Pandoc.Writers.Ansi,
                    Text.Pandoc.Writers.Textile,
                    Text.Pandoc.Writers.MediaWiki,
                    Text.Pandoc.Writers.RTF,
