@@ -129,12 +129,12 @@ blockToAnsi _ HorizontalRule =
 blockToAnsi opts (Header level inlines) = do
   contents <- inlineListToAnsi opts inlines
   let len = offset contents
-  return $ contents <> cr <>
+  return $ "\ESC[1m" <> contents <> "\ESC[0m" <> cr <>
          (case level of
                1  -> text $ replicate len '-'
-               2  -> text $ replicate len '~'
-               3  -> text $ replicate len '^'
-               4  -> text $ replicate len '+'
+--             2  -> text $ replicate len '~'
+--             3  -> text $ replicate len '^'
+--             4  -> text $ replicate len '+'
                _  -> empty) <> blankline
 blockToAnsi _ (CodeBlock (_,classes,_) str) = return $
   flush (attrs <> dashes <> space <> attrs <> cr <> text str <>
@@ -301,13 +301,13 @@ inlineListToAnsi opts lst =
 inlineToAnsi :: WriterOptions -> Inline -> State WriterState Doc
 inlineToAnsi opts (Emph lst) = do
   contents <- inlineListToAnsi opts lst
-  return $ "_" <> contents <> "_"
+  return $ "\ESC[3m" <> contents <> "\ESC[0m"
 inlineToAnsi opts (Strong lst) = do
   contents <- inlineListToAnsi opts lst
-  return $ "*" <> contents <> "*"
+  return $ "\ESC[1m" <> contents <> "\ESC[0m"
 inlineToAnsi opts (Strikeout lst) = do
   contents <- inlineListToAnsi opts lst
-  return $ "[line-through]*" <> contents <> "*"
+  return $ "\ESC[9m" <> contents <> "\ESC[0m"
 inlineToAnsi opts (Superscript lst) = do
   contents <- inlineListToAnsi opts lst
   return $ "^" <> contents <> "^"
